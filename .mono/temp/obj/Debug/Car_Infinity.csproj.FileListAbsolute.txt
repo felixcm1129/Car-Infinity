@@ -1,0 +1,8 @@
+D:\Documents\GoDot Games\Car Infinity\.mono\temp\obj\Debug\Car_Infinity.csprojAssemblyReference.cache
+D:\Documents\GoDot Games\Car Infinity\.mono\temp\obj\Debug\Car_Infinity.AssemblyInfoInputs.cache
+D:\Documents\GoDot Games\Car Infinity\.mono\temp\obj\Debug\Car_Infinity.AssemblyInfo.cs
+D:\Documents\GoDot Games\Car Infinity\.mono\temp\obj\Debug\Car_Infinity.csproj.CoreCompileInputs.cache
+D:\Documents\GoDot Games\Car Infinity\.mono\temp\bin\Debug\Car_Infinity.dll
+D:\Documents\GoDot Games\Car Infinity\.mono\temp\bin\Debug\Car_Infinity.pdb
+D:\Documents\GoDot Games\Car Infinity\.mono\temp\obj\Debug\Car_Infinity.dll
+D:\Documents\GoDot Games\Car Infinity\.mono\temp\obj\Debug\Car_Infinity.pdb
