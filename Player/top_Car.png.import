@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/top_Car.png-f00be31b3d79c0e0c8287547bb463fd2.stex"
+path="res://.import/top_Car.png-2126043edd83fd27e3abc62dfe62490b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/top_Car.png"
-dest_files=[ "res://.import/top_Car.png-f00be31b3d79c0e0c8287547bb463fd2.stex" ]
+source_file="res://Player/top_Car.png"
+dest_files=[ "res://.import/top_Car.png-2126043edd83fd27e3abc62dfe62490b.stex" ]
 
 [params]
 
