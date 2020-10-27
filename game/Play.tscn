@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/roadTextures_tilesheet@2.png" type="Texture" id=1]
 [ext_resource path="res://game/TileMap.cs" type="Script" id=2]
-[ext_resource path="res://assets/cone.png" type="Texture" id=3]
-[ext_resource path="res://Player/top_Car.png" type="Texture" id=4]
-[ext_resource path="res://Player/Player.cs" type="Script" id=5]
+[ext_resource path="res://game/Cone.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=4]
 
 [sub_resource type="TileSet" id=1]
 0/name = "road.png"
@@ -59,20 +58,32 @@ format = 1
 tile_data = PoolIntArray( 0, 1, 0, 1, 1, 0, 2, 1, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 7, 1, 0, 8, 1, 0, 9, 1, 0, 65536, 1, 0, 65537, 1, 0, 65538, 1, 0, 65539, 0, 0, 65540, 0, 0, 65541, 0, 0, 65542, 0, 0, 65543, 1, 0, 65544, 1, 0, 65545, 1, 0, 131072, 1, 0, 131073, 1, 0, 131074, 1, 0, 131075, 0, 0, 131076, 0, 0, 131077, 0, 0, 131078, 0, 0, 131079, 1, 0, 131080, 1, 0, 131081, 1, 0, 196608, 1, 0, 196609, 1, 0, 196610, 1, 0, 196611, 0, 0, 196612, 0, 0, 196613, 0, 0, 196614, 0, 0, 196615, 1, 0, 196616, 1, 0, 196617, 1, 0, 262144, 1, 0, 262145, 1, 0, 262146, 1, 0, 262147, 0, 0, 262148, 0, 0, 262149, 0, 0, 262150, 0, 0, 262151, 1, 0, 262152, 1, 0, 262153, 1, 0, 327680, 1, 0, 327681, 1, 0, 327682, 1, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0, 327686, 0, 0, 327687, 1, 0, 327688, 1, 0, 327689, 1, 0 )
 script = ExtResource( 2 )
 
-[node name="cone" type="Sprite" parent="TileMap"]
-position = Vector2( 563.363, 220.251 )
-scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 3 )
+[node name="Player" parent="TileMap" instance=ExtResource( 4 )]
+position = Vector2( 638, 601 )
 
-[node name="Player" type="KinematicBody2D" parent="TileMap"]
-position = Vector2( 637.81, 535.987 )
-script = ExtResource( 5 )
-__meta__ = {
-"_edit_group_": true
-}
+[node name="LeftSide" type="StaticBody2D" parent="."]
 
-[node name="Sprite" type="Sprite" parent="TileMap/Player"]
-scale = Vector2( 0.25, 0.25 )
-texture = ExtResource( 4 )
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LeftSide"]
+position = Vector2( -1, 1 )
+polygon = PoolVector2Array( 1, -1, 385, 0, 385, 767, 0, 767 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/Player"]
+[node name="RightSide" type="StaticBody2D" parent="."]
+position = Vector2( -1, 1 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="RightSide"]
+polygon = PoolVector2Array( 896, 0, 896, 768, 1281, 768, 1280, 0 )
+
+[node name="Cone" parent="." instance=ExtResource( 3 )]
+position = Vector2( 558, 343 )
+
+[node name="Cone2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 688, 481 )
+
+[node name="Cone3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 495, 509 )
+
+[node name="Cone4" parent="." instance=ExtResource( 3 )]
+position = Vector2( 769, 302 )
+
+[node name="Cone5" parent="." instance=ExtResource( 3 )]
+position = Vector2( 534, 138 )
