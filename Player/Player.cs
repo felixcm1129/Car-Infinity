@@ -16,7 +16,7 @@ public class Player : KinematicBody2D
 	{
 		var input_vector = Vector2.Zero;
 		input_vector.x = Input.GetActionStrength("ui_right") - Input.GetActionStrength("ui_left");
-		//input_vector.y = Input.GetActionStrength("ui_down") - Input.GetActionStrength("ui_up");
+		//input_vector.y = Input.IsActionJustPressed("ui_down");
 		input_vector = input_vector.Normalized();
 		
 		return input_vector;
