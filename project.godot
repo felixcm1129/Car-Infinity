@@ -27,6 +27,7 @@ GlobalTileMap="*res://game/TileMap.tscn"
 
 window/size/width=1280
 window/size/height=720
+window/vsync/use_vsync=false
 window/stretch/aspect="keep"
 
 [input]

@@ -6,18 +6,13 @@ public class World : Node2D
 	[Export]
 	public Godot.TileMap borderMap, roadMap, coneMap;
 	[Export]
-	public int BorderTile, RoadTile,  ConeTile;
+	public int BorderTile, RoadTile, ConeTile, Timer;
 
 	[Export]
 	public RigidBody2D cone;
 
-	[Export(PropertyHint.Range, "0,100,5")]
-	int conesChance;
-
 	int width, height, oldheight, left_right, GameStart = 2;
-	Random rnd;
-
-	int[,] terrainMap;
+	Random rnd = new Random();
 
 	public override void _Ready()
 	{
@@ -37,17 +32,10 @@ public class World : Node2D
 
 	public void doMap()
 	{
-		width = 14;
+		width = 15;
 		height = 3;
-		int x_cone;
-		int y_cone;
 
-		if (terrainMap == null)
-		{
-			terrainMap = new int[width, height];
-		}
-
-		if(GameStart <= 0)
+		if (GameStart <= 0)
 		{
 			left_right = Left_Right();
 		}
@@ -56,33 +44,41 @@ public class World : Node2D
 		{
 			for (int x = 0; x < width; x++)
 			{
-				if (x < 4 || x > 9)
+				if (x < 5 || x > 9)
 				{
 					borderMap.SetCell(x + left_right, y + oldheight, BorderTile);
 				}
 				else
 				{
 					roadMap.SetCell(x + left_right, y + oldheight, RoadTile);
-					if (placeCones()) coneMap.SetCell(x + left_right, y + oldheight, ConeTile);
-				} 
+					if (x > 5 && x < 9)
+					{
+						if (placeCones() && GameStart <= 0)
+						{
+							coneMap.SetCell(x + left_right, y + oldheight, ConeTile);
+						}
+
+					}
+
+				}
 			}
 		}
-		
-
 	}
 
 	private int Left_Right()
 	{
-		int deplacement = rnd.Next(1, 100);
-		if (deplacement < 33) return -1;
-		else if (deplacement > 33 && deplacement < 66) return 0;
+		int deplacement = rnd.Next(1, 5);
+		if (deplacement == 1) return -1;
+		else if (deplacement > 1 && deplacement < 5) return 0;
 		else return 1;
 	}
 
 	private bool placeCones()
 	{
-		int place = rnd.Next(1, 35);
+		int place = rnd.Next(1, 20);
 		if (place == 1) return true;
 		else return false;
 	}
+
+
 }

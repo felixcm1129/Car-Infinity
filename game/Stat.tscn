@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/font/Comfortaa-Bold.ttf" type="DynamicFontData" id=1]
+
+[sub_resource type="DynamicFont" id=1]
+size = 45
+font_data = ExtResource( 1 )
+
+[node name="Stat" type="HBoxContainer"]
+margin_top = 5.0
+margin_right = 250.0
+margin_bottom = 65.0
+rect_min_size = Vector2( 225, 60 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Count" type="MarginContainer" parent="."]
+margin_right = 250.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 225, 50 )
+
+[node name="Title" type="Label" parent="Count"]
+margin_top = -1.0
+margin_right = 250.0
+margin_bottom = 59.0
+rect_min_size = Vector2( 250, 60 )
+custom_fonts/font = SubResource( 1 )
+text = "Score :"
+
+[node name="Number" type="Label" parent="Count"]
+margin_top = -1.0
+margin_right = 250.0
+margin_bottom = 59.0
+rect_min_size = Vector2( 250, 60 )
+custom_fonts/font = SubResource( 1 )
+text = "0"
+align = 2
+valign = 1

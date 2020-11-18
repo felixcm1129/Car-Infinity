@@ -22,17 +22,17 @@ __meta__ = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="."]
-margin_right = 1280.0
-margin_bottom = 720.0
+margin_right = 1920.0
+margin_bottom = 1080.0
 color = Color( 0, 0, 0, 1 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-margin_right = 1280.0
-margin_bottom = 720.0
+margin_right = 1920.0
+margin_bottom = 1080.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
 margin_right = 625.0
-margin_bottom = 720.0
+margin_bottom = 1080.0
 
 [node name="Titre" type="TextureRect" parent="HBoxContainer/VBoxContainer"]
 margin_right = 625.0
@@ -43,15 +43,15 @@ texture = ExtResource( 4 )
 [node name="MenuOptions" type="VBoxContainer" parent="HBoxContainer/VBoxContainer"]
 margin_top = 154.0
 margin_right = 625.0
-margin_bottom = 720.0
+margin_bottom = 1080.0
 size_flags_vertical = 3
 custom_constants/separation = 30
 alignment = 1
 
 [node name="Play" type="Button" parent="HBoxContainer/VBoxContainer/MenuOptions"]
-margin_top = 177.0
+margin_top = 357.0
 margin_right = 625.0
-margin_bottom = 268.0
+margin_bottom = 448.0
 custom_fonts/font = SubResource( 1 )
 text = "Play"
 flat = true
@@ -61,9 +61,9 @@ __meta__ = {
 }
 
 [node name="Options" type="Button" parent="HBoxContainer/VBoxContainer/MenuOptions"]
-margin_top = 298.0
+margin_top = 478.0
 margin_right = 625.0
-margin_bottom = 389.0
+margin_bottom = 569.0
 custom_fonts/font = SubResource( 2 )
 text = "Options"
 flat = true
@@ -71,16 +71,16 @@ align = 0
 
 [node name="CenterContainer" type="CenterContainer" parent="HBoxContainer"]
 margin_left = 629.0
-margin_right = 1280.0
-margin_bottom = 720.0
+margin_right = 1920.0
+margin_bottom = 1080.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Logo" type="TextureRect" parent="HBoxContainer/CenterContainer"]
-margin_left = 250.0
-margin_top = 221.0
-margin_right = 400.0
-margin_bottom = 498.0
+margin_left = 570.0
+margin_top = 401.0
+margin_right = 720.0
+margin_bottom = 678.0
 texture = ExtResource( 3 )
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/MenuOptions/Play" to="." method="onPlaypressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/MenuOptions/Options" to="." method="onOptionspressed"]
