@@ -4,14 +4,14 @@ using System;
 public class World : Node2D
 {
 	[Export]
-	public Godot.TileMap borderMap, roadMap, coneMap;
-	[Export]
-	public int BorderTile, RoadTile, ConeTile, Timer;
+	public Godot.TileMap borderMap, roadMap, coneMap, delete;
 
 	[Export]
 	public RigidBody2D cone;
 
-	int width, height, oldheight, left_right, GameStart = 2;
+	//var Noise = OpenSimplexNoise
+
+	int width, height, oldheight, left_right, GameStart = 2, oldTileHeight = 0;
 	Random rnd = new Random();
 
 	public override void _Ready()
@@ -46,16 +46,16 @@ public class World : Node2D
 			{
 				if (x < 5 || x > 9)
 				{
-					borderMap.SetCell(x + left_right, y + oldheight, BorderTile);
+					borderMap.SetCell(x + left_right, y + oldheight, 0);
 				}
 				else
 				{
-					roadMap.SetCell(x + left_right, y + oldheight, RoadTile);
+					roadMap.SetCell(x + left_right, y + oldheight, 0);
 					if (x > 5 && x < 9)
 					{
 						if (placeCones() && GameStart <= 0)
 						{
-							coneMap.SetCell(x + left_right, y + oldheight, ConeTile);
+							coneMap.SetCell(x + left_right, y + oldheight, 0);
 						}
 
 					}
@@ -79,6 +79,5 @@ public class World : Node2D
 		if (place == 1) return true;
 		else return false;
 	}
-
 
 }

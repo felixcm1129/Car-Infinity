@@ -97,7 +97,11 @@ public class Player : KinematicBody2D
 
 	public void Collision()
 	{
-		_health--;
+		if (_health > 0)
+		{
+			_health--;
+		}
+		
 		if (_health == 0)
 			states = States.Dead;
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Player/Player.cs" type="Script" id=1]
 [ext_resource path="res://Player/top_Car.png" type="Texture" id=2]
@@ -6,6 +6,9 @@
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 20.0917
 height = 35.7498
+
+[sub_resource type="Animation" id=2]
+resource_name = "Hitted"
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -22,3 +25,4 @@ position = Vector2( 0.180603, 1.7276 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Hitted = SubResource( 2 )
