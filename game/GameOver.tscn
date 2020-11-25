@@ -1,0 +1,118 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/font/Comfortaa-Bold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://game/GameOver.cs" type="Script" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 75
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[node name="MarginContainer" type="MarginContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 1280.0
+margin_bottom = 720.0
+
+[node name="Container" type="HBoxContainer" parent="."]
+margin_right = 1280.0
+margin_bottom = 720.0
+rect_min_size = Vector2( 0, 250 )
+alignment = 1
+
+[node name="Stats" type="VBoxContainer" parent="Container"]
+margin_left = 327.0
+margin_right = 952.0
+margin_bottom = 720.0
+rect_min_size = Vector2( 0, 225 )
+alignment = 1
+
+[node name="GameOver" type="Label" parent="Container/Stats"]
+margin_top = 133.0
+margin_right = 625.0
+margin_bottom = 218.0
+size_flags_vertical = 0
+size_flags_stretch_ratio = 0.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "GAME OVER"
+align = 1
+autowrap = true
+
+[node name="HighScore" type="HBoxContainer" parent="Container/Stats"]
+margin_top = 222.0
+margin_right = 625.0
+margin_bottom = 307.0
+rect_min_size = Vector2( 625, 0 )
+
+[node name="Count" type="MarginContainer" parent="Container/Stats/HighScore"]
+margin_right = 625.0
+margin_bottom = 85.0
+rect_min_size = Vector2( 625, 0 )
+
+[node name="HighScore" type="Label" parent="Container/Stats/HighScore/Count"]
+margin_right = 625.0
+margin_bottom = 85.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "HighScore:"
+
+[node name="Score" type="Label" parent="Container/Stats/HighScore/Count"]
+margin_right = 625.0
+margin_bottom = 85.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "0"
+align = 2
+valign = 1
+
+[node name="Score" type="HBoxContainer" parent="Container/Stats"]
+margin_top = 311.0
+margin_right = 625.0
+margin_bottom = 396.0
+rect_min_size = Vector2( 625, 0 )
+alignment = 2
+
+[node name="Count" type="MarginContainer" parent="Container/Stats/Score"]
+margin_right = 625.0
+margin_bottom = 85.0
+rect_min_size = Vector2( 625, 0 )
+
+[node name="PlayerScore" type="Label" parent="Container/Stats/Score/Count"]
+margin_right = 625.0
+margin_bottom = 85.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "Player Score:"
+
+[node name="Score" type="Label" parent="Container/Stats/Score/Count"]
+margin_right = 625.0
+margin_bottom = 85.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "0"
+align = 2
+valign = 1
+
+[node name="Restart" type="Button" parent="Container/Stats"]
+margin_top = 400.0
+margin_right = 625.0
+margin_bottom = 491.0
+custom_fonts/font = SubResource( 1 )
+text = "Restart"
+
+[node name="MainMenu" type="Button" parent="Container/Stats"]
+margin_top = 495.0
+margin_right = 625.0
+margin_bottom = 586.0
+custom_fonts/font = SubResource( 1 )
+text = "Main Menu"
+[connection signal="pressed" from="Container/Stats/Restart" to="." method="onRestartPressed"]
+[connection signal="pressed" from="Container/Stats/MainMenu" to="." method="onMainMenuPressed"]

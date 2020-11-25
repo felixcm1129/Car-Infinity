@@ -9,13 +9,17 @@ public class World : Node2D
 	[Export]
 	public RigidBody2D cone;
 
-	//var Noise = OpenSimplexNoise
+	private OpenSimplexNoise Noise = new OpenSimplexNoise();
 
 	int width, height, oldheight, left_right, GameStart = 2, oldTileHeight = 0;
 	Random rnd = new Random();
 
+	private float left_right_noise;
+	private int old_random = 0;
+
 	public override void _Ready()
 	{
+		Noise.Period = 32;
 		oldheight = 0;
 		rnd = new Random();
 		borderMap = GetChild(0) as TileMap;
@@ -40,10 +44,12 @@ public class World : Node2D
 			left_right = Left_Right();
 		}
 
+
 		for (int y = 0; y < height; y++)
 		{
 			for (int x = 0; x < width; x++)
 			{
+				
 				if (x < 5 || x > 9)
 				{
 					borderMap.SetCell(x + left_right, y + oldheight, 0);
@@ -53,7 +59,7 @@ public class World : Node2D
 					roadMap.SetCell(x + left_right, y + oldheight, 0);
 					if (x > 5 && x < 9)
 					{
-						if (placeCones() && GameStart <= 0)
+						if (placeConesNoise(x, y) && GameStart <= 0)
 						{
 							coneMap.SetCell(x + left_right, y + oldheight, 0);
 						}
@@ -67,16 +73,34 @@ public class World : Node2D
 
 	private int Left_Right()
 	{
-		int deplacement = rnd.Next(1, 5);
-		if (deplacement == 1) return -1;
-		else if (deplacement > 1 && deplacement < 5) return 0;
-		else return 1;
+		int deplacement = rnd.Next(1, 100);
+		if (deplacement < 41 + old_random)
+		{
+			old_random = 10;
+			return -1;
+		}
+		else if (deplacement > 59 + old_random)
+		{
+			old_random = -10;
+			return 1;
+		} 
+		else return 0;
 	}
 
-	private bool placeCones()
+	private int Left_Right_Noise(int x, int y) 
 	{
-		int place = rnd.Next(1, 20);
-		if (place == 1) return true;
+		left_right_noise = Noise.GetNoise2d(x, y);
+		if (left_right_noise < -0.035) return -1;
+		else if (left_right_noise > 0.035) return 1;
+		else return 0;
+	}
+
+	private bool placeConesNoise(int x, int y)
+	{
+		Noise.Seed = rnd.Next(1, 5);
+		float place = Noise.GetNoise2d(x, y);
+		GD.Print(place);
+		if (place < 0) return true;
 		else return false;
 	}
 

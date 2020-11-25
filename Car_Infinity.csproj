@@ -2,4 +2,8 @@
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
   </PropertyGroup>
+  <ItemGroup>
+    <Content Include="highscore.txt" />
+    <Content Include="playerscore.txt" />
+  </ItemGroup>
 </Project>

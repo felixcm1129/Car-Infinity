@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 
 public class Player : KinematicBody2D
 {
@@ -14,19 +15,26 @@ public class Player : KinematicBody2D
 	public delegate void ScoreChanged();
 
 	[Export]
-	public int speed = 300;
-	public int maxspeed = 1000;
-	public int tempBeforeOtherCollision = 0;
-	public int timeBeforeUpdateScore = 50;
-	public int score = 0;
+	private int speed = 300;
+	private int maxspeed = 1000;
+	private int tempBeforeOtherCollision = 0;
+	private int timeBeforeUpdateScore = 50;
+	private int timeBeforeShowGameOver = 3000;
+	private int score = 0;
+	private int highscore;
+	private String highscore_file = System.IO.File.ReadAllText("./highscore.txt");
+	private String playerscore_file = System.IO.File.ReadAllText("./playerscore.txt");
+
+
 
 	private States states;
 
-	public Vector2 Velocity = Vector2.Zero;
+	private Vector2 Velocity = Vector2.Zero;
 
 	public override void _Ready()
 	{
 		states = States.Alive;
+		highscore = Int32.Parse(highscore_file);
 	}
 
 	public enum States
@@ -57,12 +65,15 @@ public class Player : KinematicBody2D
 	
 	public override void _PhysicsProcess(float delta)
 	{
-		if (timeBeforeUpdateScore > 0)
+		if(_health > 0)
 		{
-			timeBeforeUpdateScore--;
+			if (timeBeforeUpdateScore > 0)
+			{
+				timeBeforeUpdateScore--;
+			}
+			else UpdateScore();
 		}
-		else UpdateScore();
-
+		
 		if(tempBeforeOtherCollision > 0)
 		{
 			tempBeforeOtherCollision--;
@@ -91,8 +102,6 @@ public class Player : KinematicBody2D
 
 
 		Velocity = MoveAndSlide(Velocity);
-
-		//if(speed < maxspeed) speed++;
 	}
 
 	public void Collision()
@@ -103,10 +112,21 @@ public class Player : KinematicBody2D
 		}
 		
 		if (_health == 0)
+		{
 			states = States.Dead;
+			speed = 0;
+			System.IO.File.WriteAllText("./playerscore.txt", score.ToString());
+			if (score > highscore)
+			{
+				highscore = score;
+				System.IO.File.WriteAllText("./highscore.txt", highscore.ToString());
+			}
+			GetTree().ChangeScene("res://game/GameOver.tscn");
+		}
+			
 
 		EmitSignal("HealthChanged", _health);
-		tempBeforeOtherCollision = 50;
+		tempBeforeOtherCollision = 25;
 	}
 
 	public void UpdateScore()
@@ -114,6 +134,16 @@ public class Player : KinematicBody2D
 		score++;
 		EmitSignal("ScoreChanged", score);
 		timeBeforeUpdateScore = 50;
+	}
+
+	public int getHighScore()
+	{
+		return highscore;
+	}
+
+	public int getScore()
+	{
+		return score;
 	}
 
 }
