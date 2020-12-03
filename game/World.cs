@@ -11,11 +11,13 @@ public class World : Node2D
 
 	private OpenSimplexNoise Noise = new OpenSimplexNoise();
 
-	int width, height, oldheight, left_right, GameStart = 2, oldTileHeight = 0;
+	int width, height, oldheight, left_right = 0, GameStart = 2;
 	Random rnd = new Random();
 
-	private float left_right_noise;
 	private int old_random = 0;
+	private int maxConesByRow = 4;
+	private int ConesBuildRow = 0;
+	private int oldY = 0;
 
 	public override void _Ready()
 	{
@@ -49,7 +51,6 @@ public class World : Node2D
 		{
 			for (int x = 0; x < width; x++)
 			{
-				
 				if (x < 5 || x > 9)
 				{
 					borderMap.SetCell(x + left_right, y + oldheight, 0);
@@ -63,9 +64,7 @@ public class World : Node2D
 						{
 							coneMap.SetCell(x + left_right, y + oldheight, 0);
 						}
-
 					}
-
 				}
 			}
 		}
@@ -87,20 +86,28 @@ public class World : Node2D
 		else return 0;
 	}
 
-	private int Left_Right_Noise(int x, int y) 
-	{
-		left_right_noise = Noise.GetNoise2d(x, y);
-		if (left_right_noise < -0.035) return -1;
-		else if (left_right_noise > 0.035) return 1;
-		else return 0;
-	}
-
 	private bool placeConesNoise(int x, int y)
 	{
+		if (oldY != y)
+		{
+			ConesBuildRow = 0;
+			oldY = y;
+		}
+
+		if (left_right != 0)
+		{
+			maxConesByRow = 1;
+		}
+		else maxConesByRow = 4;
+
 		Noise.Seed = rnd.Next(1, 5);
 		float place = Noise.GetNoise2d(x, y);
-		GD.Print(place);
-		if (place < 0) return true;
+		if (place < 0 && ConesBuildRow < maxConesByRow) 
+		{
+			ConesBuildRow++;
+			return true;
+		}
+		
 		else return false;
 	}
 

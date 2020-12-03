@@ -60,7 +60,7 @@ position = Vector2( 928, 194 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
-zoom = Vector2( 1.35, 1.35 )
+zoom = Vector2( 1.5, 1.5 )
 __meta__ = {
 "_edit_group_": true
 }
