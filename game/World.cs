@@ -38,7 +38,7 @@ public class World : Node2D
 
 	public void doMap()
 	{
-		width = 15;
+		width = 20;
 		height = 3;
 
 		if (GameStart <= 0)
@@ -53,7 +53,16 @@ public class World : Node2D
 			{
 				if (x < 5 || x > 9)
 				{
-					borderMap.SetCell(x + left_right, y + oldheight, 0);
+					if (x < 5)
+					{
+						borderMap.SetCell((x * -1) + left_right, y + oldheight, 0);
+						borderMap.SetCell(x + left_right, y + oldheight, 0);
+					}
+					else 
+					{
+						borderMap.SetCell(x + left_right, y + oldheight, 0);
+					}
+					
 				}
 				else
 				{

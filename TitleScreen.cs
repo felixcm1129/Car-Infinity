@@ -6,7 +6,7 @@ public class TitleScreen : MarginContainer
 
 	private void onPlaypressed()
 	{
-		GetTree().ChangeScene("res://game/Play.tscn");
+		GetTree().ChangeScene("res://PreGame.tscn");
 	}
 	private void onOptionspressed()
 	{
