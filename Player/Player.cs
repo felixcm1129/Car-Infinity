@@ -16,7 +16,6 @@ public class Player : KinematicBody2D
 
 	[Export]
 	private int speed = 300;
-	private int maxspeed = 1000;
 	private int tempBeforeOtherCollision = 0;
 	private int timeBeforeUpdateScore = 50;
 	private int timeBeforeShowGameOver = 3000;

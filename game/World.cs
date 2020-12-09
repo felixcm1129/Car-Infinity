@@ -107,7 +107,7 @@ public class World : Node2D
 		{
 			maxConesByRow = 1;
 		}
-		else maxConesByRow = 4;
+		else maxConesByRow = 3;
 
 		Noise.Seed = rnd.Next(1, 5);
 		float place = Noise.GetNoise2d(x, y);
