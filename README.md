@@ -1,5 +1,5 @@
 # Car-Infinity
-vidéo pour le 1134 : https://studio.youtube.com/video/coNHFwx5-3s/edit
+vidéo pour le 1134 : https://youtu.be/coNHFwx5-3s
 Documentation :
 J'ai regarder certaine des vidéos RPG de cette chaine youtube 
 https://www.youtube.com/channel/UCrHQNOyU1q6BFEfkNq2CYMA
